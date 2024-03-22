@@ -21,6 +21,8 @@ module.allowclient = true;
 
 let attached = false;
 
+let g = new Function("return this")();
+
 module.exports = function debugbreak(continueOnAttach) {
     if (typeof document !== "undefined") {
         if (continueOnAttach) return;
@@ -32,6 +34,7 @@ module.exports = function debugbreak(continueOnAttach) {
         return;
     }
     attached = true;
+    g.debugbreakcalled = true;
 
     // NOTE: Try to avoid just using require, as it might be transpiled or otherwise wrapped.
     const r = globalThis.require || require;
