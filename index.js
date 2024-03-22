@@ -34,7 +34,7 @@ module.exports = function debugbreak(continueOnAttach) {
         return;
     }
     attached = true;
-    g.debugbreakcalled = true;
+    debugbreak.called = true;
 
     // NOTE: Try to avoid just using require, as it might be transpiled or otherwise wrapped.
     const r = globalThis.require || require;

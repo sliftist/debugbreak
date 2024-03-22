@@ -19,4 +19,8 @@
         1 = attach, and then continue
         2 = attach only once, and then continue
 */
-export default function (continueOnAttach?: unknown): void;
+interface DebugBreak {
+    (continueOnAttach?: unknown): void;
+    called?: boolean;
+}
+export default DebugBreak;
