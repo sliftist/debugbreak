@@ -22,6 +22,7 @@
 interface DebugBreak {
     (continueOnAttach?: unknown): void;
     called?: boolean;
+    disabled?: boolean;
 }
 const pointlessVariableToWorkAroundBaseTypescriptDefaultExportsHandling: DebugBreak;
 export default pointlessVariableToWorkAroundBaseTypescriptDefaultExportsHandling;

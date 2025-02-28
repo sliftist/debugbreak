@@ -23,10 +23,19 @@ let attached = false;
 
 let g = new Function("return this")();
 
-module.exports = function debugbreak(continueOnAttach) {
+function debugbreak(continueOnAttach) {
     if (typeof document !== "undefined") {
         if (continueOnAttach) return;
         debugger;
+        return;
+    }
+
+    if (typeof process !== "undefined" && process.argv && process.argv.includes("--nobreak")) {
+        console.warn("skipping debugbreak due to --nobreak command line args", new Error().stack);
+        return;
+    }
+    if (debugbreak.disabled) {
+        console.warn("skipping debugbreak due to debugbreak.disabled being set", new Error().stack);
         return;
     }
 
@@ -80,4 +89,5 @@ module.exports = function debugbreak(continueOnAttach) {
             }
         }
     }
-};
+}
+module.exports = debugbreak;
