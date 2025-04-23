@@ -21,8 +21,6 @@ module.allowclient = true;
 
 let attached = false;
 
-let g = new Function("return this")();
-
 function debugbreak(continueOnAttach) {
     if (typeof document !== "undefined") {
         if (continueOnAttach) return;
